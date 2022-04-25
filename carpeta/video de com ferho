@@ -1,0 +1,99 @@
+
+https://youtu.be/tiLEEaX1knk
+
+
+DIY Baterías LiFePO4
+4,35m subscriptors
+🔹 Os enseño el funcionamiento e instalación correcta de Venus OS en una Raspberry  PI, para monitorizar aparatos de Victron con un coste relativamente bajo en comparación a los dispostivos GX.
+👇👇👇👇👇 INSTRUCCIONES 👇👇👇👇👇
+
+1º Descargar e instalar Raspberry Pi manager
+ https://www.raspberrypi.com/software/
+ https://downloads.raspberrypi.org/ima...
+2º Instalar Raspbian Lite
+3º Introducir SD, Conectar RED, TECLADO y HDMI, encender y actualizar el Firmware de la Raspberry
+ sudo apt-get update
+ sudo apt-get install rpi-update
+ sudo rpi-update
+4º Descargar última versión de Venus OS
+ https://github.com/victronenergy/venu...
+ https://updates.victronenergy.com/fee... (pi2, 3 y 3b+)
+ https://updates.victronenergy.com/fee... (pi4)
+5º Insatalar Venus OS en la micro SD con Raspberry Pi manager
+6º Introducir SD, Conectar RED, TECLADO y HDMI y encender de nuevo
+7º Buscar IP Raspberry y entrar a ella en un navegador WEB.
+8º Descargar Versión "largue" si quieres tener NODE-RED
+ https://www.dropbox.com/sh/i8ru22o4yd...
+9º Grabar imagen "largue" en un pendrive (en FAT32), indroducir en la raspberry arrancada e instalar desde la interface WEB.
+10º Tener Acceso Root:
+ •Entrar en pestaña General 
+ •Seleccionar Usuario e Instalador
+ •Contraseña: ZZZ
+ •Sin entrar en la selección de usuario mantener pulsado flecha derecha unos segundos
+ •Activar SSH y cambiar contraseña Root
+11º Descargar e instalar Putty y WinSCP
+12º Activar modo Grafico por HDMI
+ • Abrir config.txt (u-boot/config.txt) con WinSCP y añadir lo siguiente: 
+  framebuffer_width=800
+  framebuffer_height=480
+ •Conectarse por ssh con Putty y ejecutar:
+  mv /etc/venus/headless /etc/venus/headless.off
+13º Reiniciar con "init 6"
+
+🔹 Software Victron 🔹
+👉 https://www.victronenergy.com.es/supp...
+
+👇👇👇👇👇 MAS INFO 👇👇👇👇👇
+
+🔹 Raspberry Pi 3b+🔹
+👉 https://amzn.to/3cwO6te
+
+🔹 Interfaz Victron MK3 🔹
+👉 https://amzn.to/3DzZJeVÇ
+
+🔹 Cable Victron VE.direct a USB (original) 🔹
+👉 https://amzn.to/3DzlYBu
+
+🔹 Cable Victron VE.direct a USB (DIY) 🔹
+1️⃣ USB - RS232
+👉  https://s.click.aliexpress.com/e/_pz3... (Aliexpress)
+👉  https://amzn.to/3IDPyJb (Amazon)
+2️⃣ Conector JST PH2.0 4pin
+👉 https://s.click.aliexpress.com/e/_pwZ... (Aliexpress)
+👉 https://amzn.to/3DQ8Ffh (Amazon)
+
+✅Todo lo que necesitas para tus montajes y pruebas lo encontrarás en la sección de herramientas y accesorios de nuestra página web
+👉https://www.bateriaslifepo4.com/herra...
+
+✅Grupo dedicado a Camper, Autocaravanas y pequeñas embarcaciones, donde hablar de todo lo relacionado a la instalación eléctrica.
+🚍DIY ElectroCamper🚤 🔋LiFePO4 Power🔋 
+👉https://t.me/ElectroCamper
+
+✅ Canal donde publicamos ofertas y chollos de Amazon y Aliexpress para camper.
+🚐 CAMPER ADICTOS 🚍
+👉 https://t.me/Camper_Adictos
+
+🔶 OTRAS REDES SOCIALES
+👉 https://www.facebook.com/groups/diyba...
+👉 https://www.instagram.com/diy_lifepo4...
+👉 https://www.instagram.com/diy_electro...
+
+🤗Ayuda a mantener el canal🤝
+👉 https://paypal.me/bateriaslifepo4
+
+
+#LiFePO4
+#bateríadelitio
+#bateríalitio
+#bateríalifepo4
+#bateríasolar
+#bateriadelitio
+#baterialitio
+#baterialifepo4
+#bateriasolar
+#energíasolar
+#energiasolar
+#fotovoltaica 
+#autoconsumosolar
+#victron
+#raspberry
