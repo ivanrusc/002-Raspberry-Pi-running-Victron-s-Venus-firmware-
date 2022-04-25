@@ -1,0 +1,163 @@
+Raspberrypi instal·la la imatge de Venus
+https://github.com/victronenergy/venus/wiki/raspberrypi-install-venus-image
+
+Introducció
+Aquesta pàgina explica com instal·lar el sistema operatiu Victron Energy Venus a un RaspberryPi.
+
+Tingueu en compte que la imatge de Raspberry Pi és un esforç de la comunitat: no us poseu en contacte amb el nostre departament de servei ni amb els gestors de vendes amb preguntes al respecte. Per a qualsevol pregunta o problema, utilitzeu la secció Modificacions de Comunitat .
+
+Més informació sobre com va començar aquest projecte inicialment aquí .
+
+I per a una lectura fàcil de tot això, assegureu-vos de comprovar el sistema operatiu Venus de Victron en una publicació de RaspberryPi a Panbo, el bloc d'electrònica marina.
+
+Plataformes compatibles
+Raspberry Pi Zero: no és compatible
+Raspberry Pi Zero W i WH: no compatible
+Raspberry Pi 1 A+: no és compatible
+Raspberry Pi 1 B: no és compatible
+Raspberry Pi 2: compatible
+Raspberry Pi 3 B: compatible, inclòs el WiFi integrat i Bluetooth (utilitza la v2.70 o posterior per a Bluetooth)
+Raspberry Pi 3 B+: compatible. Les mateixes notes que el Rpi3 B.
+Raspberry Pi 4: només plaques antigues, versió 1.2 i 1.3. Per executar Venus OS en un rpi4, necessiteu Venus OS versió v2.70 o posterior. Per obtenir més informació sobre aquesta limitació, vegeu la comunitat Vuctron, secció de modificacions: Brian Brown va discutir la resposta el 13 d'octubre de 2020 a les 21:46, aquí i en altres llocs.
+Començant:
+Baixeu la darrera imatge, un fitxer .wic.gz des d' aquí , i per al raspberrypi4, aneu a una carpeta i seleccioneu la subcarpeta raspberrypi4.
+Descomprimiu-lo.
+Aconsegueix una targeta SD, posa-la a l'ordinador.
+Graveu el fitxer d'imatge (.wic.gz) en una targeta SD. Al Windows, utilitzeu win32diskimager o balenaEtcher.
+Inseriu la targeta sd al raspberry pi.
+Connecteu-vos al vostre encaminador local mitjançant un cable Ethernet.
+Enceneu-lo.
+En cas que tingueu una pantalla connectada al port de sortida HDMI, veureu la consola Root: un indicador del terminal on heu iniciat sessió com a root; vegeu a continuació per si voleu veure la GUI a la sortida HDMI.
+(opcional) configurar Wifi: mitjançant l'aplicació VictronConnect, podeu unir-vos a l'rpi a una xarxa WiFi
+Accediu a la interfície d'usuari, també coneguda com a Consola remota, que requereix primer trobar l'adreça IP.
+Utilitzeu l'aplicació VictronConnect; escanejarà la vostra xarxa i, suposant que el vostre telèfon estigui a la mateixa xarxa lan/wifi que el Pi, trobarà el vostre dispositiu.
+Utilitzeu l'aplicació VictronConnect; escanejar mitjançant Bluetooth; per veure la configuració IP tant per a LAN com per a WiFi.
+Escriviu http://venus.local/ al vostre navegador.
+En cas que tingueu una pantalla i vegeu l'indicador del terminal, escriviu ifconfig per veure la seva configuració IP.
+Obriu un navegador i navegueu a l'adreça IP, per exemple http://192.168.52.3 . Si tot ha anat bé, veureu que es carrega la pàgina de la Consola remota i podreu navegar pels menús.
+L'identificador del portal VRM es deriva de l'adreça MAC de la LAN Ethernet, eliminada dels seus dos punts i en minúscula. En cas de dubte, inicieu sessió a la consola remota i, a continuació, Configuració -> Portal VRM. L'identificador es mostra en aquest menú.
+Per actualitzar més tard el sistema operatiu Venus ara instal·lat, consulteu l'últim capítol d'aquest document.
+
+Consola arrel a HDMI
+Amb finalitats de depuració, una consola root està disponible si connecteu un teclat i un monitor. També podeu obtenir l'adreça IP aquí, escrivint:
+
+ip addr ls dev eth0
+Per fer que la GUI sigui visible al port de sortida HDMI, elimineu el fitxer /etc/venus/headless. Avís, ho haureu de tornar a fer després de cada actualització del microprogramari, tret que feu algun script que ho faci per vosaltres. Veure aquí .
+
+Quan manteniu l'hdmi en mode de consola, és possible que vulgueu desfer-vos del logotip; aquí s'explica com fer-ho: https://community.victronenergy.com/questions/67072/raspberry-pi-console-banner-how- per eliminar.html
+
+Consola sèrie
+També es proporciona una consola sèrie amb una indicació d'arrel als pins 6, 8 i 10 de GPIO . El pin out està disponible aquí . Recordeu que el port sèrie és de 3,3 V TTL i no tolera 5 V.
+
+Podeu utilitzar el cable USB Victron VE-Direct per a això. Tingueu en compte que el cable USB VEDirect està aïllat galvànicament i s'ha d'alimentar des dels dos extrems. Hi ha disponible una font de 3,3 V al pin 1 del Raspberry Pi.
+
+NO UTILITZAR L'ALIMENTACIÓ DE 5V PER ALIMENTAR EL CABLE VE.DIRECT!
+
+Una alternativa al nostre cable VE.Direct són l'adafruit i altres cables comuns.
+
+Possibles molèsties
+La biblioteca d'opcionals preconstruïts per instal·lar paquets és més petita que la que ofereix Raspbian. Per veure els paquets disponibles, consulteu la informació sobre opkg en un dels dos manuals de la línia de comandaments del sistema operatiu Venus. O simplement google a opkg. I, opkg és el gestor de paquets. No hi ha cap apt-get. Més informació aquí .
+Genèric:
+El programari proporcionat per aquesta imatge és el mateix que el que s'executa al Color Control GX, vegeu el manual d'usuari de CCGX
+Pàgina de codi obert de Victron Live - CCGX i Venus
+Per a qualsevol pregunta o problema, utilitzeu la secció Modificacions de Comunitat . Tingueu en compte que la imatge de Raspberry Pi no és compatible com els nostres productes comercials, no us poseu en contacte amb el nostre departament de servei ni amb els gestors de vendes amb preguntes al respecte.
+Habilitació de ssh (funció per a desenvolupadors)
+Seguiu les instruccions aquí .
+
+Arrel de la imatge sense connexió de xarxa
+Si no teniu disponible una connexió de xarxa per cable, no podreu accedir a la consola i establir una contrasenya d'arrel. Tanmateix, encara podeu establir la contrasenya manualment mitjançant la consola de depuració.
+
+Connecteu una connexió en sèrie als pins GPIO rellevants tal com s'ha explicat anteriorment, o connecteu un monitor i un teclat per accedir a la consola de depuració.
+
+Ara configureu la contrasenya amb l' passwdordre:
+
+passwd
+
+Connexió a ssh de forma remota
+Hi ha moltes maneres de fer-ho, i una està escrita aquí:
+
+https://community.victronenergy.com/questions/81273/remote-access-to-venusos-zerotier-one-installation.html
+
+Connecteu-vos mitjançant WiFi
+Vegeu Configuració -> Wifi. Tingueu en compte que no tots els llapis USB wifi són compatibles. Consulteu la secció d'Internet del Manual CCGX per als dos que donem suport.
+
+Si necessiteu habilitar el WiFi però no teniu connexió Ethernet i no podeu accedir a la gui, podeu utilitzar -lo connmanctlper activar-lo. Seguiu aquestes instruccions .
+
+Connexió de productes
+La connexió de productes funciona de la mateixa manera que els dispositius Venus, a més de:
+
+Connexió a un producte VE.Direct
+Utilitzeu el nostre cable VE.Direct a USB per això. Et recomanem que no facis cables tu mateix. Els dispositius USB-Serial de baix cost que hi ha al mercat demostren que causen tot tipus de problemes; i també els originals tenen aïllament: realment necessari.
+
+Hi ha molts exemples de persones per a les quals el cable no aïllat fet pel seu compte va funcionar, i algun dia ja no va funcionar, i després es va dedicar a buscar molt de temps. I no només el seu temps, sinó el temps dels altres, inclosos els empleats de Victron, ja que utilitzen Community per demanar ajuda amb els seus problemes. Frustrant!
+
+Més informació aquí: https://community.victronenergy.com/questions/48562/vedirect-diy-cable.html
+
+Connexió a un producte VE.Bus (Multi, Quattro, etc.)
+Com que no hi ha cap MK3 integrat al Pi, ni tampoc hi ha una placa d'expansió disponible, cal utilitzar un MK3-USB. Connectar l'MK3 hauria de funcionar fora de la caixa, no es requereix cap configuració addicional. El mk2-usb no és compatible.
+
+Tingueu en compte que la configuració d'entrada de CA a Configuració -> Configuració del sistema mostrarà Desconegut i no es pot configurar fins que no s'hagi detectat un MK3-USB.
+
+Connecteu-vos a un producte VE.Can
+S'han provat diversos dispositius d'interfície CAN i es detallen aquí: Interfícies CAN RPi
+
+Afegir/definir més relés
+Per defecte, la nostra imatge de raspberrypi defineix un pin GPIO com a relé. Podeu afegir-ne més. Al rootfs haureu de modificar /etc/venus/gpio_list.
+
+Per veure quin codi gestiona això, llegiu aquí: https://github.com/victronenergy/meta-victronenergy/blob/master/meta-venus/recipes-bsp/gpio-export/files/gpio_pins.sh
+
+Aquest paquet omple, a cada arrencada, els /dev/gpio/relay_*enllaços. Que al seu torn són consumits per systemcalc, aquí , que els posa a D-Bus.
+
+I així (D-Bus) és com la gui i els altres processos del sistema operatiu Venus interfíquen amb els relés.
+
+Pantalla tàctil Raspberry Pi
+La pantalla tàctil "Official Raspberry Pi 7" fa una bona pantalla local per a Venus. Funciona més o menys fora de la caixa, però si voleu que la pantalla s'enfosqui i en blanc de Venus, heu d'instal·lar algunes coses. He va escriure un script que fa el treball i fins i tot torna a aplicar els canvis després d'una actualització de Venus:
+
+https://github.com/kwindrem/RpiDisplaySetup
+
+Pantalla HDMI
+També podeu utilitzar una pantalla tàctil HDMI. Probablement haureu d'afegir paràmetres de visualització perquè coincideixin amb la vostra pantalla. Per exemple:
+
+# custom setup for 1024x600 HDMI touchscreen
+
+hdmi_group=2
+
+hdmi_mode=87
+
+hdmi_cvt=1024 600 60 6 0 0 0
+
+hdmi_force_hotplug=1
+
+# allow HDMI isplay to enter low powr mode
+
+# doesn't appear to work so not enabled
+
+#hdmi_blanking 1
+
+# no overscan
+
+disable_overscan=1
+
+Tingueu en compte que no hi ha cap mecanisme dins de l'HDMI que admeti l'atenuació o l'esborrat (estalvi de pantalla).
+
+Relés i entrades digitals
+La programació predeterminada per als pins Raspberry PI GPIO és que els 8 primers tinguin pull UP i els pins restants tinguin pull DOWNS. Les entrades digitals de Venus s'assignen als GPIO 5, 6, 13, 19 i 26, de manera que les dues primeres apareixen altes i la resta apareixen baixes sense res adjunt. No hi ha manera de canviar el desplegament/avall amb la interfície del sistema de fitxers GPIO que s'utilitza a Venus.
+
+Si voleu que totes les entrades digitals funcionin de la mateixa manera, he creat una superposició per solucionar-ho:
+
+https://github.com/kwindrem/Venus-Gx-Rpi-Gpio-Input-Overlay
+
+Aquest repo també conté definicions per a relés addicionals, però només dos relés funcionen realment. Només el primer pot ser controlat per la funcionalitat de Venus. El segon es pot controlar manualment des de la GUI. Més de dos relés fan que el systemcalc es col·loqui. Hi ha una solució per a això, però encara estarien restringits al control manual i caldria modificar la GUI. Així, de moment, només s'han configurat dos relleus.
+
+Com actualitzar
+Igual que els dispositius GX comercials normals, un RaspberryPi amb Venus OS es pot actualitzar mitjançant una descàrrega en línia; iniciada manualment o automàticament.
+
+I es pot actualitzar proporcionant un fitxer d'actualització (.swu) en un llapis USB.
+
+La configuració de l'usuari (també coneguda com la partició de dades) es conserva durant una actualització amb un fitxer .swu.
+
+RaspberryPi3 s'actualitza des d'abans a la v2.70 fins a després de la v2.70
+
+Per fer-ho, heu de refrescar la targeta sd, utilitzant una imatge .wic.gz: el que significa començar des de zero. Baixeu aquest fitxer des de l'enllaç proporcionat anteriorment, al capítol d'instal·lació. Tingueu en compte que (tant per descomptat com per desgràcia) totes les configuracions es perdran fent això. Hi ha maneres de conservar-los, vegeu la secció Modificacions de la comunitat. Sapigueu que pot ser igual de ràpid començar de nou i reconfigurar-lo després.
+
+Si intenteu actualitzar des de la versió anterior a la v2.70 a un fitxer posterior sense tornar a fer-ho, es mostrarà el missatge "No s'ha trobat cap actualització".
